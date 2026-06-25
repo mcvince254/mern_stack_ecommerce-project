@@ -3,8 +3,8 @@ export const sendEmail = async(options)=>{
     const transporter = nodemailer.createTransport({
           service:process.env.SMTP_SERVICE,
           auth:{
-            user:SMTP_MAIL,
-            pass:process.env.SMPT_PASSWORD//from gmail at 6:14
+            user:process.env.SMTP_EMAIL,
+            pass:process.env.SMPT_PASSWORD
           } 
     })
 

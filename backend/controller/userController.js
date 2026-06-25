@@ -85,50 +85,36 @@ export const requestPasswordReset = handleAsyncError(async(req,res,next)=>{
 
 
     const resetPasswordURL = `http://localhost:4300/api/v1/reset/${resetToken}`
-    const message = `use the following link to reset your password : ${resetPasswordURL}
-    if you did not request password reset please ignore`
- //send email
-    //  ************************suspend sending email as we wait to get gmail password.fall back - use fs module below
-//     try{
-
+    const message = `use the following link to reset your password : ${resetPasswordURL}`
    
-//     await sendEmail ({
-//         email:user.email, 
-//         subject:'Password reset Request',
-//         message
-//     })
-//     res.status(200).json({
-//         success:true,
-//         message:`Email is sent to ${user.email} succesfully`
-//     })
-
-
-//     }catch(error){
-//         user.resetPasswordToken = undefined;
-//         user.resetPasswordExpire = undefined;
-//         await user.save({validateBeforeSave:false});
-//         return next(new HandleError('Email could not be sent.Please try again later',500))
-
-//     }
-    //USING FS MODULE AS WE WAIT TO FIX EMAIL PASSWORD
-    writeFile('./passwordreset.txt',`${resetPasswordURL} \n ${message}`,(err,result)=>{
-        if(err){
-            user.resetPasswordToken = undefined;
-            user.resetPasswordExpire = undefined;
-            user.save({validateBeforeSavesave:false});
-            return next (new HandleError('Try again later',500))
-        }
-        res.status(200).json({
-            success:true,
-            message : `Email sent to ${user.email}.`
-        })
-    })
-// 
-})
  //send email
-    //  ************************suspend sending email as we wait to get gmail password.fall back - use fs module below
+    
+            try{
 
-    //Reset Password******suspend coz of crypto issue*******************
+        
+                    await sendEmail ({
+                        email:user.email, 
+                        subject:'Password reset Request',
+                        message
+                    })
+                    res.status(200).json({
+                        success:true,
+                        message:`Email is sent to ${user.email} succesfully`
+                    })
+            }
+
+            catch(error){
+                    user.resetPasswordToken = undefined;
+                    user.resetPasswordExpire = undefined;
+                    await user.save({validateBeforeSave:false});
+                    console.log(error)
+                    return next(new HandleError('Email could not be sent.Please try again later',500))
+
+                    }
+        });
+
+// passwordreset
+   
 export const resetPassword = (handleAsyncError(async (req,res,next) => {
        const resetToken = req.params.token;
        const resetPasswordToken = crypto.createHash('sha256').update(resetToken).digest('hex');
@@ -147,7 +133,7 @@ export const resetPassword = (handleAsyncError(async (req,res,next) => {
         if(password !== confirmpassword){
                 return next(new HandleError("passwords do not match",500));
         }
-
+        console.log("found user")
         const hashedPassword =  await hashPassword(password);
      
        user.password = hashedPassword;

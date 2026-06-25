@@ -1,0 +1,36 @@
+
+#REGister
+
+curl -X POST http://localhost:4300/api/v1/register ^
+-H "Content-Type: application/json" ^
+-d "{\"email\":\"mcvincemuthoni@gmail.com\",\"password\":\"12345678\",\"name\":\"realEmail\"}"
+
+# REQUEST RESET PASSWORD
+curl -X POST http://localhost:4300/api/v1/password/forgot ^
+-H "Content-Type: application/json" ^
+-d "{\"email\":\"mcvincemuthoni@gmail.com\",\"password\":\"12345678\",\"name\":\"realEmail\"}"
+
+curl -v -X POST http://localhost:4300/api/v1/reset/608b5c0dc8d8d742ebc3cc85d4d8af52925fbc62 ^
+-H "Content-Type: application/json" ^
+-d "{\"password\":\"12345678\",\"confirmpassword\":\"12345678\"}"
+
+
+
+
+
+
+
+
+    //USING FS MODULE AS WE WAIT TO FIX EMAIL PASSWORD
+    writeFile('./passwordreset.txt',`${resetPasswordURL} \n ${message}`,(err,result)=>{
+        if(err){
+            user.resetPasswordToken = undefined;
+            user.resetPasswordExpire = undefined;
+            user.save({validateBeforeSave:false});
+            return next (new HandleError('Try again later',500))
+        }
+        res.status(200).json({
+            success:true,
+            message : `Email sent to ${user.email}.`
+        })
+    })

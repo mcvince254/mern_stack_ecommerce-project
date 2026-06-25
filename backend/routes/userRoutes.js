@@ -16,3 +16,7 @@ router.route("/profile").post(verifyUserAuth, getUserDetails)
 
 
 export default router
+
+//curl -X POST http://localhost:4300/api/v1/password/forgot ^
+//-H "Content-Type: application/json" ^
+//-d "{\"email\":\"vcharagu@gmail.com\",\"password\":\"123456\"}"
