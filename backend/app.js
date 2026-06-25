@@ -28,6 +28,10 @@ app.use(
   })
 );
 
+app.get("/", (req, res) => {
+  res.send("E-commerce API is running");
+});
+
 app.use('/api/v1', product);
 app.use('/api/v1', user);
 
