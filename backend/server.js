@@ -1,8 +1,13 @@
 import app from "./app.js";
 import dotenv from 'dotenv'
 import { connectMongoDataBase } from "./config/db.js";
-dotenv.config()
-connectMongoDataBase()
+dotenv.config({
+    path: "./backend/config/config.env"
+});
+
+
+
+connectMongoDataBase();
 // Handle uncaught Exception Errors
 process.on('uncaughtException',(error)=>{
     console.log(`Error:${error.message}`);

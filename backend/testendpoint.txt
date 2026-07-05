@@ -16,6 +16,13 @@ curl -v -X POST http://localhost:4300/api/v1/reset/608b5c0dc8d8d742ebc3cc85d4d8a
 
 
 
+LIVE ON RENDER
+
+curl -X POST https://mern-stack-ecommerce-project-91cd.onrender.com/api/v1/user/register \
+-H "Content-Type: application/json" \
+-d "{\"name\":\"Test User\",\"email\":\"test@test.com\",\"password\":\"123456\"}"
+
+
 
 
 

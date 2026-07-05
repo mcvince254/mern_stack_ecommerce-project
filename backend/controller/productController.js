@@ -26,6 +26,19 @@ export const getAllProducts =handleAsyncError( async(req,res,next)=>{
 }
 );
 
+export const testGetAllrPoduct = async function(req,res){
+    const products = await Product.find();
+    console.log(req.query)
+
+        res.json(
+            {
+                products
+            }
+        )
+    }
+
+
+
 
 
 // 3 Update product
