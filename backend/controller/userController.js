@@ -8,6 +8,7 @@ import crypto from 'crypto'
 import { sendEmail } from '../utils/sendEmail.js';
 import fs, { writeFile } from 'fs';
 import { verifyUserAuth } from '../middleWare/userAuth.js';
+import sendResponse from '../utils/sendResponse.js';
 
 export const registerUser = handleAsyncError(async(req,res,next)=>{
     const {name,email,password} = req.body;
@@ -163,3 +164,87 @@ export const getUserDetails = handleAsyncError(async(req,res,next)=>{
    
 })
 
+//update password
+
+export const updatePassword = handleAsyncError(async(req,res,next)=>{
+
+    const {oldPassword,newPassword,confirmpassword} = req.body;
+    const user = await User.findById(req.user.id).select('+password');
+    const checkPasswordMatch = await user.verifyPassword(oldPassword);
+    if (!checkPasswordMatch){
+        return next(new HandleError(" old password is incorrect",400))
+    }
+
+    if(newPassword !== confirmpassword){
+        return next(new HandleError('passwords do not match',400))
+    }
+
+    const hashedPassword = await hashPassword(newPassword)
+
+    user.password = hashedPassword;
+
+    await user.save(); 
+    sendToken(user,200,res)
+
+
+
+})
+
+//✔ update profiler
+
+export const updateProfile = handleAsyncError(async(req,res,next)=>{
+
+    const {name,email} = req.body;
+    const updatedData = {
+        name,email
+    }
+    const user = await User.findByIdAndUpdate(req.user.id,updatedData,{new:true,runValidators:true});
+    res.status(200).json({success:true,message:"Profile updated successfully",user}) 
+})
+//admin -get user list
+
+export const getUsersList = handleAsyncError(async(req,res,next)=>{
+
+    const users = await User.find();
+    sendResponse(res,201,"user",user)
+
+})
+
+//✔✔ admib - get single user
+
+export const getSingleUser = handleAsyncError(async(req,res,next ) =>{
+    const user = await User.findById(req.params.id);
+    if(!user){
+        return next(new HandleError(`no ujser with this id ${req.param.id}`),400)
+    };
+
+    sendResponse(res,201,"user",user)
+})
+
+
+//✔ change user role-inly admin canchange
+
+
+export const updateUserRole = handleAsyncError(async(req,res,next) =>{
+    const {role} = req.body 
+    const newUserData = {role};
+    const user = await findByIdAndUpdate(req.params.id,newUserData,{new:true,runValidators:true})
+        if(!user){
+        return next(new HandleError("User not found",400))
+    };
+    sendResponse(res,201,"user",user)
+})
+  
+
+//✔ Admin - delete user
+
+ export const deleteUser = handleAsyncError(async(req,res,next)=>{
+    const user = await findById(req.params.id);
+    if(!user){
+        return next(new HandleError("User does not exist",400))
+    }
+    await User.findByIdAndDelete(req.params.id);
+    sendResponse(res,201,"message","deleted successfully")
+ 
+ 
+    })

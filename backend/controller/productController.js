@@ -1,4 +1,4 @@
-import Product from '../models/productModels.js';
+import Product from '../models/productModel.js';
 import HandleError from '../utils/handleError.js';
 import handleAsyncError from '../middleWare/handleAsyncError.js';
 import APIFunctionality from '../utils/apiFunctionality.js';
@@ -26,16 +26,19 @@ export const getAllProducts =handleAsyncError( async(req,res,next)=>{
 }
 );
 
-export const testGetAllrPoduct = async function(req,res){
-    const products = await Product.find();
-    console.log(req.query)
 
-        res.json(
-            {
+export const testGetAllrPoduct = async function(req,res){
+
+    const apiproduct = new testApiFunctionality(Product.find(),req.query).search().filter();
+    const products= await apiproduct.query;
+
+
+            res.status(200).json({
+                success:true,
                 products
-            }
-        )
-    }
+            })
+    
+}
 
 
 
@@ -98,3 +101,16 @@ export const getSingleProduct = handleAsyncError( async(req,res,next) =>{
     }
 }
 );
+
+// ✔ 6. admin get all products
+ export const  getAdminProducts = handleAsyncError(async(req,res,next)=>{
+    const products = await Product.find();
+    res.status(200).json({
+        success:true,products
+    })
+ })
+
+// ✔ 7️⃣ user - Upate or create a review0️⃣1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣8️⃣8️⃣9️⃣🔟❌🔑🔐📝
+export const createOrUpdateReview = handleAsyncError(async(req,res,next)=>{
+    
+})
