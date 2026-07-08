@@ -178,11 +178,68 @@ http://localhost:3000/api/v1
 ### Production
 
 ```text
-https://your-render-url.onrender.com/api/v1
+https://mern-stack-ecommerce-project-91cd.onrender.com/api/v1
 ```
 
 ---
+## User API Endpoints
 
+**Base URL**
+
+```text
+https://mern-stack-ecommerce-project-91cd.onrender.com/api/v1
+```
+
+### Public Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/register` | Register a new user |
+| POST | `/login` | Log in and receive an authentication token |
+| POST | `/logout` | Log out the current user |
+| POST | `/password/forgot` | Request a password reset email |
+| POST | `/reset/:token` | Reset password using the token received by email |
+
+### Authenticated User Endpoints
+
+These endpoints require the user to be logged in.
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/profile` | Get the logged-in user's profile |
+| POST | `/password/update` | Change the user's password |
+| POST | `/profile/update` | Update the user's profile |
+
+### Admin Endpoints
+
+These endpoints require authentication and an **Admin** role.
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/admin/users` | Retrieve all users |
+| GET | `/admin/users/:id` | Retrieve a specific user |
+| PUT | `/admin/users/:id` | Update a user's role |
+| DELETE | `/admin/users/:id` | Delete a user |
+
+### Example
+
+Register a new user
+
+```http
+POST https://mern-stack-ecommerce-project-91cd.onrender.com/api/v1/register
+```
+
+Login
+
+```http
+POST https://mern-stack-ecommerce-project-91cd.onrender.com/api/v1/login
+```
+
+Get all users (Admin only)
+
+```http
+GET https://mern-stack-ecommerce-project-91cd.onrender.com/api/v1/admin/users
+```
 ## Deployment
 
 ### Backend
