@@ -18,7 +18,7 @@ router.route("/admin/users")
 .get(verifyUserAuth,roleBasedAccess('admin'), getUsersList);
 router.route("/admin/users/:id ")
 .get(verifyUserAuth,roleBasedAccess('admin'), getSingleUser)
-.put(verifyUserAuth,roleBasedAccess('admibn'), updateUserRole)
+.put(verifyUserAuth,roleBasedAccess('admin'), updateUserRole)
 .delete(verifyUserAuth,roleBasedAccess('admin'), deleteUser)
 
 

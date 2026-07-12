@@ -40,7 +40,7 @@ const productSchema =  new mongoose.Schema({
         maxLength:[7,"price cannot exceeds 7 digits"],
         default:1
        },
-    numberofReviews:{
+    numberOfReviews:{
         type:Number,
         default:0
        },

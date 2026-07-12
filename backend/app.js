@@ -1,14 +1,18 @@
 import express from "express";
 import product from './routes/productRoutes.js'
 import user from './routes/userRoutes.js'
+import order from './routes/orderRoutes.js'
 import errorHandleMiddleware from "./middleWare/error.js";
 import cookieParser from 'cookie-parser';
 import cors from "cors";
+import fileUpload from 'express-fileupload'
+import {v2 as cloudinary} from 'cloudinary'
 
 const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(fileUpload())
 
 const allowedOrigins = [
   "http://localhost:5000",
@@ -34,6 +38,7 @@ app.get("/", (req, res) => {
 
 app.use('/api/v1', product);
 app.use('/api/v1', user);
+app.use('/api/v1',order)
 
 app.use(errorHandleMiddleware);
 

@@ -9,9 +9,16 @@ import { sendEmail } from '../utils/sendEmail.js';
 import fs, { writeFile } from 'fs';
 import { verifyUserAuth } from '../middleWare/userAuth.js';
 import sendResponse from '../utils/sendResponse.js';
+import {v2 as cloudinary} from 'cloudinary'
 
 export const registerUser = handleAsyncError(async(req,res,next)=>{
-    const {name,email,password} = req.body;
+    const {name,email,password,avatar} = req.body;
+    const myCloud = CloudinaryStorage.uploader.upload(avatar,{
+                            folder:'avatars',
+                            width:150,
+                            crop:'scale'
+                         })
+
     const hashedPassword = await hashPassword(password)
     console.log(hashedPassword);
     
@@ -228,7 +235,7 @@ export const getSingleUser = handleAsyncError(async(req,res,next ) =>{
 export const updateUserRole = handleAsyncError(async(req,res,next) =>{
     const {role} = req.body 
     const newUserData = {role};
-    const user = await findByIdAndUpdate(req.params.id,newUserData,{new:true,runValidators:true})
+    const user = await User.findByIdAndUpdate(req.params.id,newUserData,{new:true,runValidators:true})
         if(!user){
         return next(new HandleError("User not found",400))
     };
