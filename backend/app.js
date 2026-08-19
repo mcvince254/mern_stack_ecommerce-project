@@ -18,7 +18,7 @@ const allowedOrigins = [
   "http://localhost:4300",
   process.env.CLIENT_URL,
   "http://localhost:5173",
-  "http://localhost:4300/api/v1products"
+  "https://mern-stack-ecommerce-project-wine.vercel.app"
 ];
 
 app.use(
