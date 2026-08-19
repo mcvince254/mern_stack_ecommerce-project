@@ -5,7 +5,7 @@ import requests
 BASE = "http://localhost:4300/api/v1"
 
 data = {
-    "email": "admin@example.com",
+    "email": "mcvincemuthoni@gmail.com",
     "password": "12345678"
 }
 

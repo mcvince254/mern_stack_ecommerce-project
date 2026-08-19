@@ -54,6 +54,12 @@ const orderSchema = new mongoose.Schema({
         ref:'User',
         required:true
     },
+    orderStatus:{
+        type:String,
+        required:true,
+        default:"processing"
+
+    },
     paymentInfo:{
         id:{
             type:String,

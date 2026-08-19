@@ -26,11 +26,17 @@ class APIFunctionality{
         return this
     }
 
-    pagination(resultsPerPage){
-        const currentPage = Number(this.queryStr.page)|| 1000
-        this.query = currentPage
-        return this
-    }
+   pagination(resultsPerPage){
+       const currentPage = Number(this.queryStr.page) || 1;
+
+       const skip = resultsPerPage * (currentPage - 1);
+
+       this.query = this.query
+           .skip(skip)
+           .limit(resultsPerPage);
+
+       return this;
+   }
 }
 
 export default APIFunctionality

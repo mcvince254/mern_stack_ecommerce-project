@@ -1,7 +1,7 @@
 import requests
 
 BASE = "http://localhost:4300/api/v1"
-product_id = "6a4bd500a8059ebe239b26ca"
+product_id = "6a5f6dd09f8ce96d99122583"
 
 with open("token.txt") as f:
     token = f.read().strip()

@@ -21,10 +21,5 @@ router.route('/admin/product/:id')
 .delete(verifyUserAuth,roleBasedAccess('admin'), deleteProduct);
 
 
-
-
-
-
-
  
 export default router    

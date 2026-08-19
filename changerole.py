@@ -2,7 +2,7 @@ import requests
 
 BASE = "http://localhost:4300/api/v1"
 
-user_id = "6a510dabe8e84874fbec81f7"
+user_id = "6a5e61a4203bbac11194fae2"
 
 url = f"{BASE}/admin/users/{user_id}"
 

@@ -3,7 +3,7 @@ import json
 
 BASE = "http://localhost:4300/api/v1"
 
-productId = "6a4bd500a8059ebe239b26ca"
+productId = "6a5f6dd19f8ce96d99122d4f"
 
 # Read JWT token
 with open("token.txt", "r") as f:
@@ -16,7 +16,7 @@ headers = {
 
 payload = {
     "shippingInfo": {
-        "address": "123 Moi Avenue",
+        "address": "123 ndumbd",
         "city": "Nairobi",
         "state": "Nairobi",
         "phoneNo": "0712345678",
@@ -25,7 +25,7 @@ payload = {
     "orderItems": [
         {
             "name": "Test Product",
-            "price": 1500,
+            "price": 18888888800,
             "quantity": 2,
             "image": "https://example.com/product.jpg",
             "product": productId

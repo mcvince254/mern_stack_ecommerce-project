@@ -3,8 +3,8 @@ import requests
 url = "http://localhost:4300/api/v1/register"
 
 payload = {
-    "name": "Admin",
-    "email": "admin@example.com",
+    "name": "mcvince",
+    "email": "mcvincemuthoni254@gmail.com",
     "password": "12345678",
     "role":"admin"
 }

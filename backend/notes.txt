@@ -1,0 +1,10 @@
+summation logic is breaking in updateOrders
+use updateorders to learn promiseall/why are we doing its maths later;
+delvered At not updating after delivery.
+why find order by id and delete instead of findbyidand dlete order
+//why delete orders at all at all 
+import icons after internet connection
+download trainer images
+
+image slider is not working
+understand image slider and transform translate

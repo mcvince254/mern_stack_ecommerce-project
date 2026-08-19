@@ -6,6 +6,28 @@ A full-stack e-commerce application built with the MERN stack (MongoDB, Express.
 
 🚧 **Under Active Development**
 
+## Project Status
+
+🚧 This project is currently under development.
+
+### Completed
+- Product catalog
+- MongoDB product database
+- Product seeder
+- Redux state management
+- Product images and image slider
+- Product search and filtering
+- Backend pagination
+- Product cards
+
+### In Progress
+- Frontend pagination controls
+- Shopping cart
+- Authentication
+- Product reviews
+- Checkout/payment
+- Final UI improvements
+
 This project is currently being developed and tested. Features are being implemented incrementally, and APIs may change as development progresses.
 
 ---
