@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export const getProduct = createAsyncThunk('product/getProduct',async(_,{rejectWithValue})=>{
     try {
-        const link = '/api/v1/products';
+        const link = `${import.meta.env.VITE_BACKEND_URL}/api/v1/products`;
         const {data} = await axios.get(link);
         console.log('response is',data);
         return data
