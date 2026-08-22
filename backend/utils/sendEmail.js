@@ -11,7 +11,7 @@ export const sendEmail = async(options)=>{
     const mailOptions = {
         from:"mcvincemuthoni@gmail.com",
         to:options.email,
-        text:options.subject,
+        subject:options.subject,
         text:options.message
     } 
     
